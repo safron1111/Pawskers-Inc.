@@ -1,0 +1,32 @@
+SPACEDUST_RESOURCE
+{
+  resourceName = Hydrogen
+  body = Jool
+
+
+  RESOURCEBAND
+  {
+    name = joolAtmo
+    title = #LOC_SpaceDust_Band_Generic
+    minAbundance = 0.0000000120
+    maxAbundance = 0.0000000380
+
+    alwaysDiscovered = true
+    alwaysIdentified = true
+
+    useAirDensity = False
+    distributionType = Spherical
+
+    altUpperBound = 600000
+    altLowerBound = 0
+    altPeak = 100000
+    altVariability = 0
+    altFalloffType = Linear
+
+    latUpperBound = 90
+    latLowerBound = -90
+    latPeak = 0
+    latVariability = 0
+    latFalloffType = None
+  }
+}
