@@ -1,0 +1,117 @@
+PART {
+    name = Kitty04ThrusterWinston
+    module = Part
+    author = JebMothman
+    mesh = WinstonEngine.mu
+    scale = 1
+    rescaleFactor = 1
+    TechRequired = veryHeavyRocketry
+    entryCost = 340000
+    cost = 40000
+    category = Engine
+    title = K-04 "Winston"
+    manufacturer = Pawskers Inc.
+    description = Hyperpowerfulsuperdupergammaultradeltaomega Thruster!
+    attachRules = 1,0,1,0,1
+    mass = 12.6
+    dragModelType = default
+    maximum_drag = 0.3
+    minimum_drag = 0.2
+    angularDrag = 2
+    crashTolerance = 8
+    breakingForce = 200
+    breakingTorque = 200
+    maxTemp = 2600
+    stagingIcon = LIQUID_ENGINE
+    EFFECTS {
+        running_closed {
+            AUDIO {
+                channel = Ship
+                clip = sound_rocket_hard
+                volume = 0.0 0.0
+                volume = 1.0 5.0
+                pitch = 0.0 0.2
+                pitch = 1.0 1.0
+                loop = true
+            }
+
+            PREFAB_PARTICLE {
+                prefabName = fx_exhaustFlame_yellow
+                transformName = thrustTransform
+                emission = 0.0 0.01
+                emission = 0.05 0.05
+                emission = 0.75 0.25
+                emission = 1.0 1.25
+                speed = 0.0 0.25
+                speed = 0.5 0.5
+                speed = 0.75 0.75
+                speed = 1.0 1.25
+            }
+
+        }
+
+    }
+
+    MODULE {
+        name = ModuleEnginesFX
+        engineID = winstonClosed
+        runningEffectName = running_closed
+        thrustVectorTransformName = thrustTransform
+        exhaustDamage = True
+        throttleLocked = False
+        ignitionThreshold = 0.1
+        minThrust = 0
+        maxThrust = 600
+        heatProduction = 950
+        PROPELLANT {
+            name = LiquidFuel
+            ratio = 0.9
+            DrawGauge = true
+        }
+
+        PROPELLANT {
+            name = Oxidizer
+            ratio = 1.1
+        }
+
+        atmosphereCurve {
+            key = 0 300
+            key = 1 290
+        }
+
+    }
+
+    MODULE {
+        name = ModuleGimbal
+        gimbalTransformName = thrustTransform
+        gimbalRange = 3
+    }
+
+    MODULE {
+        name = ModuleAlternator
+        RESOURCE {
+            name = ElectricCharge
+            rate = 3.0
+        }
+
+    }
+
+    NODE {
+        name = top
+        transform = node_stack_top
+        size = 1
+        method = FIXED_JOINT
+        crossfeed = True
+        rigid = False
+    }
+
+    NODE {
+        name = bottom
+        transform = node_stack_bottom
+        size = 1
+        method = FIXED_JOINT
+        crossfeed = True
+        rigid = False
+    }
+
+}
