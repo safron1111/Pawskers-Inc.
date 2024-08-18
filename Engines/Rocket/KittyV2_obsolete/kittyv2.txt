@@ -1,0 +1,117 @@
+PART {
+    name = Kitty01V2
+    module = Part
+    author = JebMothman
+    mesh = kittyv2.mu
+    scale = 1
+    rescaleFactor = 1
+    TechRequired = heavyRocketry
+    entryCost = 52500
+    cost = 2400
+    category = Engine
+    title = K-01 "Kitty"
+    manufacturer = Pawskers Inc.
+    description = just a lil guy
+    attachRules = 1,0,1,0,0
+    mass = 1.35
+    dragModelType = default
+    maximum_drag = 0.2
+    minimum_drag = 0.2
+    angularDrag = 2
+    crashTolerance = 8
+    breakingForce = 200
+    breakingTorque = 200
+    maxTemp = 2000
+    stagingIcon = LIQUID_ENGINE
+    EFFECTS {
+        running_closed {
+            AUDIO {
+                channel = Ship
+                clip = sound_rocket_spurts
+                volume = 0.0 0.0
+                volume = 1.0 5.0
+                pitch = 0.0 0.2
+                pitch = 1.0 1.0
+                loop = true
+            }
+
+            MODEL_MULTI_PARTICLE {
+                modelName = Squad/FX/shockExhaust_red_small
+                transformName = thrustTransform2
+                emission = 0.0 0.01
+                emission = 0.05 0.05
+                emission = 0.75 0.25
+                emission = 1.0 1.25
+                speed = 0.0 0.25
+                speed = 0.5 0.5
+                speed = 0.75 0.75
+                speed = 1.0 1.25
+            }
+
+        }
+
+    }
+
+    MODULE {
+        name = ModuleEnginesFX
+        engineID = K01KITTY
+        runningEffectName = running_closed
+        thrustVectorTransformName = thrustTransform2
+        exhaustDamage = True
+        throttleLocked = False
+        ignitionThreshold = 0.1
+        minThrust = 0
+        maxThrust = 300
+        heatProduction = 500
+        PROPELLANT {
+            name = LiquidFuel
+            ratio = 0.9
+            DrawGauge = true
+        }
+
+        PROPELLANT {
+            name = Oxidizer
+            ratio = 1.1
+        }
+
+        atmosphereCurve {
+            key = 0 320
+            key = 1 290
+        }
+
+    }
+
+    MODULE {
+        name = ModuleGimbal
+        gimbalTransformName = nozzle
+        gimbalRange = 1
+    }
+
+    MODULE {
+        name = ModuleAlternator
+        RESOURCE {
+            name = ElectricCharge
+            rate = 3.0
+        }
+
+    }
+
+    NODE {
+        name = top
+        transform = node_stack_top
+        size = 1
+        method = FIXED_JOINT
+        crossfeed = True
+        rigid = False
+    }
+
+    NODE {
+        name = bottom
+        transform = node_stack_bottom
+        size = 1
+        method = FIXED_JOINT
+        crossfeed = True
+        rigid = False
+    }
+
+}
